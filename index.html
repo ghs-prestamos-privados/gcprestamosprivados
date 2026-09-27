@@ -41,7 +41,7 @@
     ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 84px; }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -727,7 +727,7 @@
       border: 1.5px solid rgba(27,42,74,0.15);
       border-radius: 8px;
       font-family: 'Lato', sans-serif;
-      font-size: 0.92rem;
+      font-size: 16px; /* 16px evita el zoom automático del iPhone */
       color: var(--navy);
       background: var(--off-white);
       transition: var(--transition);
@@ -735,11 +735,20 @@
       appearance: none;
     }
 
+    /* Flechita del menú de selección */
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231B2A4A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 12px 8px;
+      padding-right: 44px;
+    }
+
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--gold);
-      background: var(--white);
+      background-color: var(--white);
       box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
     }
 
@@ -825,15 +834,14 @@
       text-align: center;
     }
 
+    /* Ocultos hasta que el envío termine; el JS los muestra */
     .form-message.success {
-      display: block;
       background: rgba(46,204,113,0.1);
       border: 1.5px solid var(--success);
       color: #1a8a4a;
     }
 
     .form-message.error-msg {
-      display: block;
       background: rgba(231,76,60,0.1);
       border: 1.5px solid var(--error);
       color: var(--error);
@@ -895,8 +903,17 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-      transition: var(--transition);
+      transition: var(--transition), visibility 0s;
       cursor: pointer;
+    }
+
+    /* Oculto mientras se ven las cifras del inicio o el formulario */
+    .float-wa.oculto {
+      opacity: 0;
+      transform: scale(0.8);
+      visibility: hidden;
+      pointer-events: none;
+      transition: var(--transition), visibility 0s 0.3s;
     }
 
     .float-wa:hover {
@@ -1250,14 +1267,14 @@
               <div class="form-group">
                 <label for="telefono">Teléfono / WhatsApp <span class="required">*</span></label>
                 <input type="tel" id="telefono" name="telefono" placeholder="829-000-0000" autocomplete="tel" />
-                <div class="field-error" id="telefonoError">Ingresa un número válido.</div>
+                <div class="field-error" id="telefonoError">Ingresa un número dominicano de 10 dígitos (809, 829 u 849).</div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="correo">Correo electrónico <span class="required">*</span></label>
-              <input type="email" id="correo" name="correo" placeholder="tu@correo.com" autocomplete="email" />
-              <div class="field-error" id="correoError">Ingresa un correo válido.</div>
+              <label for="email">Correo electrónico (opcional)</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+              <div class="field-error" id="emailError">Ingresa un correo válido o deja el campo vacío.</div>
             </div>
 
             <div class="form-row">
@@ -1344,33 +1361,40 @@
   </a>
 
   <!-- ============================================================
-       JAVASCRIPT — Seguridad + Validación + Formspree
+       JAVASCRIPT — Validación + Formspree
   ============================================================ -->
   <script>
-    // ── Sanitización anti-XSS ──────────────────────────────────
-    // Escapa caracteres especiales para que ningún script
-    // inyectado pueda ejecutarse en el navegador.
-    function sanitize(str) {
-      const map = { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":"&#x27;", '/':'&#x2F;' };
-      return String(str).replace(/[&<>"'/]/g, m => map[m]);
-    }
-
     // ── Validación de campos ──────────────────────────────────
+    // Marca el campo y conecta su mensaje de error para lectores de pantalla.
     function validateField(id, errorId, condition) {
       const el = document.getElementById(id);
       const err = document.getElementById(errorId);
       if (!condition(el.value)) {
         el.classList.add('error');
+        el.setAttribute('aria-invalid', 'true');
+        el.setAttribute('aria-describedby', errorId);
         err.classList.add('visible');
         return false;
       }
       el.classList.remove('error');
+      el.removeAttribute('aria-invalid');
+      el.removeAttribute('aria-describedby');
       err.classList.remove('visible');
       return true;
     }
 
+    // Teléfono dominicano: 809, 829 u 849 + 7 dígitos.
+    // Acepta espacios, guiones, paréntesis, puntos y el prefijo +1.
+    function telefonoDominicanoValido(v) {
+      let digitos = v.replace(/[\s\-().]/g, '').replace(/^\+/, '');
+      if (/^1\d{10}$/.test(digitos)) digitos = digitos.slice(1);
+      return /^(809|829|849)\d{7}$/.test(digitos);
+    }
+
+    const FIELDS = ['nombre','telefono','email','zona','perfil','monto','garantia'];
+
     // Validación en tiempo real al salir del campo
-    ['nombre','telefono','correo','zona','perfil','monto','garantia'].forEach(id => {
+    FIELDS.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('blur', () => validateSingle(id));
     });
@@ -1378,18 +1402,14 @@
     function validateSingle(id) {
       const validators = {
         nombre:   v => v.trim().length >= 3,
-        telefono: v => /^\d{7,15}$/.test(v.replace(/[\s\-\(\)\+]/g,'')),
-        correo:   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+        telefono: telefonoDominicanoValido,
+        email:    v => v.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
         zona:     v => v !== '',
         perfil:   v => v !== '',
         monto:    v => v !== '',
         garantia: v => v.trim().length >= 10,
       };
-      const errors = {
-        nombre:'nombreError', telefono:'telefonoError', correo:'correoError',
-        zona:'zonaError', perfil:'perfilError', monto:'montoError', garantia:'garantiaError'
-      };
-      return validateField(id, errors[id], validators[id]);
+      return validateField(id, id + 'Error', validators[id]);
     }
 
     // ── Envío del formulario ──────────────────────────────────
@@ -1403,16 +1423,20 @@
         return;
       }
 
-      // 2. Validar todos los campos
-      const fields = ['nombre','telefono','correo','zona','perfil','monto','garantia'];
-      const valid = fields.map(validateSingle).every(Boolean);
-      if (!valid) return;
+      // 2. Validar todos los campos; si hay errores, llevar al primero
+      const results = FIELDS.map(validateSingle);
+      const firstInvalid = FIELDS[results.indexOf(false)];
+      if (firstInvalid) {
+        const el = document.getElementById(firstInvalid);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.focus({ preventScroll: true });
+        return;
+      }
 
-      // 3. Sanitizar datos antes de enviar
+      // 3. Enviar los datos tal cual los escribió el cliente
       const formData = new FormData();
-      fields.forEach(id => {
-        const val = document.getElementById(id).value;
-        formData.append(id, sanitize(val));
+      FIELDS.forEach(id => {
+        formData.append(id, document.getElementById(id).value.trim());
       });
 
       // 4. Deshabilitar botón para evitar doble envío
@@ -1466,6 +1490,18 @@
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(el);
     });
+
+    // ── Botón flotante de WhatsApp ────────────────────────────
+    // Se esconde mientras se ven las cifras del inicio o el formulario,
+    // para no tapar "Enviar solicitud" ni las estadísticas.
+    const floatWa = document.querySelector('.float-wa');
+    const tapables = new Set();
+    const waObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting ? tapables.add(e.target) : tapables.delete(e.target));
+      floatWa.classList.toggle('oculto', tapables.size > 0);
+    });
+    [document.querySelector('.hero-stats'), document.getElementById('loanForm')]
+      .forEach(el => el && waObserver.observe(el));
   </script>
 
 </body>
