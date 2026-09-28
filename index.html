@@ -824,6 +824,58 @@
       gap: 6px;
     }
 
+    .form-card .form-legal {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--navy);
+      margin: 14px 0 0;
+    }
+
+    .form-card .form-legal a {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* ============================================================
+       POLÍTICA DE PRIVACIDAD
+    ============================================================ */
+    #privacidad {
+      padding: 0 0 80px;
+      background: var(--off-white);
+    }
+
+    .privacidad-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(27,42,74,0.08);
+      padding: 20px 28px;
+    }
+
+    .privacidad-card summary {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .privacidad-texto {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    .privacidad-texto h4 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 18px 0 4px;
+    }
+
+    @media (max-width: 600px) {
+      .privacidad-card { padding: 18px 20px; }
+    }
+
     /* ============================================================
        SUCCESS / ERROR MESSAGES
     ============================================================ */
@@ -1012,8 +1064,8 @@
 
         <div class="hero-stats">
           <div class="stat-item">
-            <div class="stat-number">48h</div>
-            <div class="stat-label">Aprobación máxima</div>
+            <div class="stat-number">24–48h</div>
+            <div class="stat-label">Respuesta hábil con<br>documentos completos</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">3</div>
@@ -1076,8 +1128,8 @@
             <div class="value-item">
               <div class="value-icon">🔒</div>
               <div class="value-text">
-                <h4>Confidencialidad total</h4>
-                <p>Tu información y situación financiera son completamente privadas.</p>
+                <h4>Discreción</h4>
+                <p>Tratamos tu información y tu situación financiera con reserva.</p>
               </div>
             </div>
             <div class="value-item">
@@ -1211,7 +1263,7 @@
           <p>
             Completa el formulario con tu información y nos comunicamos contigo
             en menos de 24 horas para orientarte sobre el proceso.
-            Toda tu información es confidencial.
+            Tratamos tu información con reserva.
           </p>
 
           <div class="contact-details">
@@ -1353,12 +1405,83 @@
               Enviar solicitud →
             </button>
 
+            <p class="form-legal">
+              Al enviar aceptas nuestra <a href="#privacidad" class="enlace-privacidad">política de privacidad</a>.
+            </p>
+
             <p class="form-note">
-              🔒 Tu información es 100% confidencial y segura
+              🔒 Tratamos tu información con reserva
             </p>
           </form>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POLÍTICA DE PRIVACIDAD
+       BORRADOR — revisar (idealmente con un abogado) antes de publicar.
+       Los textos entre [corchetes] están pendientes de completar.
+  ============================================================ -->
+  <section id="privacidad">
+    <div class="container">
+      <details class="privacidad-card" id="privacidadDetalle">
+        <summary>Política de privacidad</summary>
+        <div class="privacidad-texto">
+          <p><em>Última actualización: [fecha]</em></p>
+
+          <h4>Quién recibe tus datos</h4>
+          <p>
+            GHS Préstamos Privados, con zona de servicio en San Francisco de Macorís,
+            Santiago, La Vega y Moca. Puedes escribirnos por WhatsApp al +1 (809) 941-8609
+            o al correo gcprestamosprivados@gmail.com.
+          </p>
+
+          <h4>Qué datos pedimos</h4>
+          <p>
+            En el formulario: nombre, teléfono o WhatsApp, correo electrónico (opcional),
+            zona donde vives, tipo de cliente, monto que necesitas y la descripción de tu
+            garantía y del motivo del préstamo. Si continúas el proceso, podemos pedirte
+            documentos como tu cédula y los de la garantía.
+          </p>
+
+          <h4>Para qué los usamos</h4>
+          <p>
+            Solo para contactarte, evaluar tu solicitud y, si se aprueba, preparar el
+            contrato. No los usamos para publicidad de terceros.
+            [Si consultan buró de crédito, indicarlo aquí y pedir tu autorización.]
+          </p>
+
+          <h4>Por dónde pasan</h4>
+          <p>
+            El formulario se envía a través de Web3Forms, un servicio que nos reenvía tu
+            solicitud por correo, y llega a nuestro correo de Gmail (Google). Si usas el
+            botón de WhatsApp, el mensaje pasa por WhatsApp (Meta). Estos servicios pueden
+            guardar los datos en servidores fuera de la República Dominicana.
+          </p>
+
+          <h4>No vendemos tus datos</h4>
+          <p>
+            No vendemos, alquilamos ni compartimos tus datos con otras personas o empresas,
+            salvo cuando la ley o una autoridad competente lo exija.
+          </p>
+
+          <h4>Cuánto tiempo los guardamos</h4>
+          <p>
+            Mientras evaluamos tu solicitud y, si se firma un préstamo, mientras dure y por
+            el tiempo que exija la ley. Si la solicitud no sigue adelante, los borramos en
+            [plazo].
+          </p>
+
+          <h4>Tus derechos (Ley 172-13)</h4>
+          <p>
+            Según la Ley 172-13 de Protección de Datos de Carácter Personal, puedes pedir
+            ver qué datos tenemos tuyos, corregirlos, que los borremos o que dejemos de
+            usarlos. Escríbenos por WhatsApp o al correo de arriba indicando tu nombre y
+            teléfono, y te responderemos en un plazo de [plazo].
+          </p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1373,7 +1496,8 @@
           <div class="footer-tagline">Tu solución financiera en la Región Cibao</div>
         </div>
         <div class="footer-copy">
-          <div>© 2025 GHS Préstamos Privados. Todos los derechos reservados.</div>
+          <div>© <span id="anioActual">2026</span> GHS Préstamos Privados. Todos los derechos reservados.</div>
+          <div style="margin-top:6px;"><a href="#privacidad" class="enlace-privacidad">Política de privacidad</a></div>
           <div style="margin-top:6px;">San Francisco de Macorís · Santiago · La Vega · Moca · República Dominicana</div>
         </div>
       </div>
@@ -1550,6 +1674,15 @@
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(el);
     });
+
+    // ── Año actual en el pie de página ────────────────────────
+    document.getElementById('anioActual').textContent = new Date().getFullYear();
+
+    // ── Enlaces a la política de privacidad: abrirla al llegar ─
+    document.querySelectorAll('.enlace-privacidad').forEach(a => {
+      a.addEventListener('click', () => { document.getElementById('privacidadDetalle').open = true; });
+    });
+    if (location.hash === '#privacidad') document.getElementById('privacidadDetalle').open = true;
 
     // ── Botón flotante de WhatsApp ────────────────────────────
     // Se esconde mientras se ven las cifras del inicio o el formulario,
