@@ -250,6 +250,13 @@
       animation: fadeUp 0.9s 0.2s ease both;
     }
 
+    .hero-garantia {
+      display: block;
+      margin-top: 10px;
+      color: var(--white);
+      font-weight: 700;
+    }
+
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -1047,11 +1054,11 @@
       <div class="hero-content">
         <div class="hero-badge">📍 Región Cibao · República Dominicana</div>
         <h1 class="hero-title">
-          Tu solución<br><span>financiera privada</span><br>en la Región Cibao
+          Préstamos privados<br><span>con garantía</span><br>en la Región Cibao
         </h1>
         <p class="hero-subtitle">
-          Préstamos personales y comerciales rápidos, formales y confiables.
-          Sin filas, sin burocracia bancaria, con contratos que protegen a las dos partes.
+          Préstamos para negocios, productores y contratistas, respaldados con tu propiedad o terreno.
+          <strong class="hero-garantia">Aceptamos propiedades con título y terrenos con documentos de posesión.</strong>
         </p>
         <div class="hero-buttons">
           <a href="#contacto" class="btn-primary">
@@ -1069,7 +1076,7 @@
           </div>
           <div class="stat-item">
             <div class="stat-number">3</div>
-            <div class="stat-label">Tipos de préstamo</div>
+            <div class="stat-label">Perfiles de cliente</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">RD$500K</div>
@@ -1162,43 +1169,44 @@
 
         <!-- Segmento 1 -->
         <div class="service-card">
-          <div class="service-emoji">👔</div>
-          <h3>Empleado Hotelero</h3>
-          <p>Para trabajadores del sector turístico con salario fijo que necesitan liquidez rápida.</p>
-          <div class="service-amount">RD$15,000 – RD$40,000</div>
+          <div class="service-emoji">🏪</div>
+          <h3>Comerciante y Microempresario</h3>
+          <p>Para dueños de colmados, ferreterías, salones, talleres y negocios de repuestos.</p>
+          <div class="service-amount">RD$50,000 – RD$150,000</div>
           <ul class="service-reqs">
-            <li>Carnet de trabajo del hotel</li>
             <li>Cédula de identidad</li>
-            <li>Copia de contrato laboral</li>
-            <li>Pagaré notarial</li>
+            <li>Evidencia del negocio activo</li>
+            <li>Título de propiedad o documentos de posesión del inmueble</li>
+            <li>Referencias</li>
+            <li>Contrato notarial con garantía</li>
           </ul>
         </div>
 
         <!-- Segmento 2 -->
         <div class="service-card">
-          <div class="service-emoji">🏪</div>
-          <h3>Microempresario</h3>
-          <p>Para dueños de colmados, salones, restaurantes, transportistas y proveedores de servicios.</p>
-          <div class="service-amount">RD$50,000 – RD$150,000</div>
+          <div class="service-emoji">🌾</div>
+          <h3>Productor Agropecuario</h3>
+          <p>Para productores de cacao, arroz y víveres, y para granjas.</p>
+          <div class="service-amount">RD$100,000 – RD$500,000</div>
           <ul class="service-reqs">
-            <li>Evidencia del negocio activo</li>
-            <li>Título de vehículo o garantía</li>
-            <li>Referencias de confianza</li>
-            <li>Contrato hipotecario o pagaré</li>
+            <li>Cédula de identidad</li>
+            <li>Título de propiedad o documentos de posesión (aceptamos terrenos sin título)</li>
+            <li>Evidencia de la actividad</li>
+            <li>Contrato notarial con garantía inmobiliaria</li>
           </ul>
         </div>
 
         <!-- Segmento 3 -->
         <div class="service-card">
           <div class="service-emoji">🏗️</div>
-          <h3>Empresario / Contratista</h3>
-          <p>Para contratistas, proveedores turísticos y empresarios que necesitan capital mayor.</p>
+          <h3>Contratista y Constructor</h3>
+          <p>Para contratistas, constructores y empresarios que necesitan capital mayor.</p>
           <div class="service-amount">RD$200,000 – RD$500,000</div>
           <ul class="service-reqs">
-            <li>Título de propiedad o vehículo</li>
+            <li>Cédula de identidad</li>
+            <li>Título de propiedad o documentos de posesión</li>
             <li>Contratos activos o facturas</li>
             <li>Contrato notarial con garantía inmobiliaria</li>
-            <li>Inscripción en Registro de Títulos</li>
           </ul>
         </div>
 
@@ -1374,10 +1382,10 @@
                 <label for="perfil">Tipo de cliente <span class="required">*</span></label>
                 <select id="perfil" name="perfil">
                   <option value="">Selecciona...</option>
-                  <option>Empleado hotelero</option>
-                  <option>Microempresario</option>
-                  <option>Empresario / Contratista</option>
-                  <option>Otro</option>
+                  <option>Comerciante y microempresario</option>
+                  <option>Productor agropecuario</option>
+                  <option>Contratista y constructor</option>
+                  <option>Otro (con propiedad o terreno)</option>
                 </select>
                 <div class="field-error" id="perfilError">Selecciona tu perfil.</div>
               </div>
@@ -1387,17 +1395,19 @@
               <label for="monto">Monto que necesitas <span class="required">*</span></label>
               <select id="monto" name="monto">
                 <option value="">Selecciona un rango...</option>
-                <option>RD$15,000 – RD$40,000</option>
-                <option>RD$40,000 – RD$100,000</option>
+                <option>Menos de RD$50,000</option>
+                <option>RD$50,000 – RD$100,000</option>
                 <option>RD$100,000 – RD$200,000</option>
-                <option>RD$200,000 – RD$500,000</option>
+                <option>RD$200,000 – RD$350,000</option>
+                <option>RD$350,000 – RD$500,000</option>
+                <option>Más de RD$500,000</option>
               </select>
               <div class="field-error" id="montoError">Selecciona el monto.</div>
             </div>
 
             <div class="form-group">
               <label for="garantia">Garantía disponible y motivo del préstamo <span class="required">*</span></label>
-              <textarea id="garantia" name="garantia" placeholder="Ej: Tengo título de vehículo Toyota 2018. Necesito el préstamo para capital de trabajo de mi negocio..."></textarea>
+              <textarea id="garantia" name="garantia" placeholder="Ej: Tengo un solar con documentos de posesión en Moca. Necesito el préstamo para surtir mi colmado..."></textarea>
               <div class="field-error" id="garantiaError">Por favor describe tu garantía y motivo.</div>
             </div>
 
