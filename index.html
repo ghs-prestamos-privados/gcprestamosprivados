@@ -6,7 +6,7 @@
   <title>Préstamos con garantía en San Francisco de Macorís, Santiago, La Vega y Moca | GHS</title>
   <meta name="description" content="Préstamos con garantía de propiedad o terreno en San Francisco de Macorís, Santiago, La Vega y Moca. Para negocios, productores y contratistas, con contrato notarial." />
   <link rel="canonical" href="https://ghs-prestamos-privados.github.io/gcprestamosprivados/" />
-  <link rel="icon" type="image/png" href="images/logo-icon.png" />
+  <link rel="icon" type="image/webp" href="images/logo-icon.webp" />
   <link rel="apple-touch-icon" href="images/logo-icon.png" />
   <meta name="robots" content="index, follow" />
 
@@ -41,8 +41,7 @@
     "telephone": "+18099418609",
     "email": "gcprestamosprivados@gmail.com",
     "image": "https://ghs-prestamos-privados.github.io/gcprestamosprivados/images/og-ghs.jpg",
-    "logo": "https://ghs-prestamos-privados.github.io/gcprestamosprivados/images/logo-icon.png",
-    "address": {
+    "logo": "https://ghs-prestamos-privados.github.io/gcprestamosprivados/images/logo-icon.png",    "address": {
       "@type": "PostalAddress",
       "addressCountry": "DO"
     },
@@ -217,9 +216,7 @@
     ============================================================ */
     #hero {
       min-height: 100vh;
-      background:
-        linear-gradient(160deg, rgba(17,29,51,0.97) 55%, rgba(27,42,74,0.88) 100%),
-        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover no-repeat;
+      background: linear-gradient(160deg, var(--navy-dark) 55%, var(--navy) 100%);
       display: flex;
       align-items: center;
       padding: 120px 0 80px;
@@ -566,7 +563,7 @@
     }
 
     .service-reqs li::before {
-      content: '✓';
+      content: '✓' / '';
       color: var(--gold);
       font-weight: 700;
       font-size: 0.85rem;
@@ -735,6 +732,40 @@
     .whatsapp-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    }
+
+    /* Botones de contacto: WhatsApp + Llamar */
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .contact-buttons .whatsapp-btn { margin-top: 0; }
+
+    .call-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 99px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-link {
+      color: var(--navy);
+      text-decoration: underline;
     }
 
     /* ============================================================
@@ -1048,6 +1079,18 @@
     .float-wa svg { width: 28px; height: 28px; fill: white; }
 
     /* ============================================================
+       MENOS MOVIMIENTO (preferencia del sistema)
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 900px) {
@@ -1088,7 +1131,7 @@
   <nav>
     <div class="container nav-inner">
       <a href="#hero" class="nav-logo">
-        <img src="images/logo-icon.png" alt="GHS Préstamos Privados" class="nav-logo-icon" />
+        <img src="images/logo-icon.webp" alt="GHS Préstamos Privados" class="nav-logo-icon" width="40" height="40" />
         <div class="nav-logo-text">
           GHS Préstamos
           <span>Privados</span>
@@ -1104,7 +1147,7 @@
   <section id="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">📍 Región Cibao · República Dominicana</div>
+        <div class="hero-badge"><span aria-hidden="true">📍</span> Región Cibao · República Dominicana</div>
         <h1 class="hero-title">
           Préstamos privados<br><span>con garantía</span><br>en la Región Cibao
         </h1>
@@ -1114,10 +1157,10 @@
         </p>
         <div class="hero-buttons">
           <a href="#contacto" class="btn-primary">
-            📋 Solicitar préstamo
+            <span aria-hidden="true">📋</span> Solicitar préstamo
           </a>
           <a href="#servicios" class="btn-secondary">
-            Ver servicios →
+            Ver servicios <span aria-hidden="true">→</span>
           </a>
         </div>
 
@@ -1151,7 +1194,7 @@
       <div class="nosotros-grid">
         <div class="nosotros-visual">
           <div class="nosotros-card">
-            <div class="nosotros-card-icon">🏦</div>
+            <div class="nosotros-card-icon" aria-hidden="true">🏦</div>
             <h3>GHS Préstamos Privados</h3>
             <p>
               Somos una alternativa privada, rápida y confiable para personas y negocios
@@ -1171,28 +1214,28 @@
 
           <div class="values-list">
             <div class="value-item">
-              <div class="value-icon">⚡</div>
+              <div class="value-icon" aria-hidden="true">⚡</div>
               <div class="value-text">
                 <h4>Proceso rápido</h4>
                 <p>Respuesta en 24 a 48 horas hábiles una vez verificada tu documentación.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon">📜</div>
+              <div class="value-icon" aria-hidden="true">📜</div>
               <div class="value-text">
                 <h4>Contratos formales</h4>
                 <p>Cada préstamo se formaliza con contratos notariales con plena validez legal.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon">🔒</div>
+              <div class="value-icon" aria-hidden="true">🔒</div>
               <div class="value-text">
                 <h4>Discreción</h4>
                 <p>Tratamos tu información y tu situación financiera con reserva.</p>
               </div>
             </div>
             <div class="value-item">
-              <div class="value-icon">🤝</div>
+              <div class="value-icon" aria-hidden="true">🤝</div>
               <div class="value-text">
                 <h4>Trato directo</h4>
                 <p>Sin intermediarios. Hablas directamente con quien toma la decisión.</p>
@@ -1221,7 +1264,7 @@
 
         <!-- Segmento 1 -->
         <div class="service-card">
-          <div class="service-emoji">🏪</div>
+          <div class="service-emoji" aria-hidden="true">🏪</div>
           <h3>Comerciante y Microempresario</h3>
           <p>Para dueños de colmados, ferreterías, salones, talleres y negocios de repuestos.</p>
           <div class="service-amount">RD$50,000 – RD$150,000</div>
@@ -1236,7 +1279,7 @@
 
         <!-- Segmento 2 -->
         <div class="service-card">
-          <div class="service-emoji">🌾</div>
+          <div class="service-emoji" aria-hidden="true">🌾</div>
           <h3>Productor Agropecuario</h3>
           <p>Para productores de cacao, arroz y víveres, y para granjas.</p>
           <div class="service-amount">RD$100,000 – RD$500,000</div>
@@ -1250,7 +1293,7 @@
 
         <!-- Segmento 3 -->
         <div class="service-card">
-          <div class="service-emoji">🏗️</div>
+          <div class="service-emoji" aria-hidden="true">🏗️</div>
           <h3>Contratista y Constructor</h3>
           <p>Para contratistas, constructores y empresarios que necesitan capital mayor.</p>
           <div class="service-amount">RD$200,000 – RD$500,000</div>
@@ -1328,28 +1371,28 @@
 
           <div class="contact-details">
             <div class="contact-item">
-              <div class="contact-item-icon">📱</div>
+              <div class="contact-item-icon" aria-hidden="true">📱</div>
               <div class="contact-item-text">
                 <strong>WhatsApp</strong>
                 <span>+1 (809) 941-8609</span>
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">✉️</div>
+              <div class="contact-item-icon" aria-hidden="true">✉️</div>
               <div class="contact-item-text">
                 <strong>Correo</strong>
-                <span>gcprestamosprivados@gmail.com</span>
+                <a href="mailto:gcprestamosprivados@gmail.com" class="contact-link">gcprestamosprivados@gmail.com</a>
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-icon" aria-hidden="true">📍</div>
               <div class="contact-item-text">
                 <strong>Zona de servicio</strong>
                 <span>San Francisco de Macorís, Santiago, La Vega y Moca — Región Cibao</span>
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">🕐</div>
+              <div class="contact-item-icon" aria-hidden="true">🕐</div>
               <div class="contact-item-text">
                 <strong>Horario de atención</strong>
                 <span>Lunes a Sábado · 8:00 AM – 8:00 PM</span>
@@ -1357,18 +1400,33 @@
             </div>
           </div>
 
+          <div class="contact-buttons">
           <a href="https://wa.me/18099418609?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20GHS%20Pr%C3%A9stamos%20Privados%20y%20me%20interesa%20obtener%20un%20pr%C3%A9stamo."
              class="whatsapp-btn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             Escríbenos por WhatsApp
           </a>
+          <a href="tel:+18099418609" class="call-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            Llamar
+          </a>
+          <!-- "Ver en Google": oculto hasta que el perfil de Google Business esté
+               verificado y se vea públicamente. Para activarlo, quita el comentario
+               y vuelve a agregar "sameAs" con este enlace en el JSON-LD.
+          <a href="https://share.google/lAHIdOAdTeyzFhbHe" class="call-btn" target="_blank" rel="noopener">
+            Ver en Google
+          </a>
+          -->
+          </div>
         </div>
 
         <!-- Form -->
         <div class="form-card">
-          <h3>📋 Solicitud de Préstamo</h3>
+          <h3><span aria-hidden="true">📋</span> Solicitud de Préstamo</h3>
           <p>Completa el formulario y te contactamos en menos de 24 horas.</p>
 
           <!-- Status messages -->
@@ -1380,14 +1438,14 @@
           </svg>
 
           <div id="formSuccess" class="form-message success" role="alert" aria-live="polite">
-            ✅ ¡Solicitud enviada exitosamente! Te contactaremos en menos de 24 horas.
+            <span aria-hidden="true">✅</span> ¡Solicitud enviada exitosamente! Te contactaremos en menos de 24 horas.
             <a href="https://wa.me/18099418609" class="whatsapp-btn wa-resumen" target="_blank" rel="noopener">
               <svg width="22" height="22" fill="white" aria-hidden="true"><use href="#icono-wa"/></svg>
               Enviar también por WhatsApp
             </a>
           </div>
           <div id="formError" class="form-message error-msg" role="alert" aria-live="polite">
-            ❌ Hubo un problema al enviar. Por favor escríbenos directamente por WhatsApp.
+            <span aria-hidden="true">❌</span> Hubo un problema al enviar. Por favor escríbenos directamente por WhatsApp.
             <a href="https://wa.me/18099418609" class="whatsapp-btn wa-resumen" target="_blank" rel="noopener">
               <svg width="22" height="22" fill="white" aria-hidden="true"><use href="#icono-wa"/></svg>
               Enviar solicitud por WhatsApp
@@ -1464,7 +1522,7 @@
             </div>
 
             <button type="submit" class="submit-btn" id="submitBtn">
-              Enviar solicitud →
+              Enviar solicitud <span aria-hidden="true">→</span>
             </button>
 
             <p class="form-legal">
@@ -1472,7 +1530,7 @@
             </p>
 
             <p class="form-note">
-              🔒 Tratamos tu información con reserva
+              <span aria-hidden="true">🔒</span> Tratamos tu información con reserva
             </p>
           </form>
         </div>
@@ -1575,6 +1633,10 @@
        JAVASCRIPT — Validación + Web3Forms
   ============================================================ -->
   <script>
+    // Respeta la preferencia del sistema de reducir el movimiento.
+    const menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DESPLAZAMIENTO = menosMovimiento ? 'auto' : 'smooth';
+
     // ── Validación de campos ──────────────────────────────────
     // Marca el campo y conecta su mensaje de error para lectores de pantalla.
     function validateField(id, errorId, condition) {
@@ -1656,7 +1718,7 @@
       const firstInvalid = FIELDS[results.indexOf(false)];
       if (firstInvalid) {
         const el = document.getElementById(firstInvalid);
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.scrollIntoView({ behavior: DESPLAZAMIENTO, block: 'center' });
         el.focus({ preventScroll: true });
         return;
       }
@@ -1702,18 +1764,18 @@
         if (response.ok && resultado.success) {
           // Éxito — mostrar mensaje y limpiar formulario
           document.getElementById('formSuccess').style.display = 'block';
-          document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          document.getElementById('formSuccess').scrollIntoView({ behavior: DESPLAZAMIENTO, block: 'center' });
           this.reset();
-          btn.textContent = '✓ Enviado';
+          btn.innerHTML = '<span aria-hidden="true">✓</span> Enviado';
         } else {
           throw new Error('Server error');
         }
       } catch (err) {
         // Error — mostrar mensaje de error
         document.getElementById('formError').style.display = 'block';
-        document.getElementById('formError').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('formError').scrollIntoView({ behavior: DESPLAZAMIENTO, block: 'center' });
         btn.disabled = false;
-        btn.textContent = 'Enviar solicitud →';
+        btn.innerHTML = 'Enviar solicitud <span aria-hidden="true">→</span>';
       }
     });
 
@@ -1727,7 +1789,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.service-card, .step-item, .value-item, .nosotros-card').forEach(el => {
+    if (!menosMovimiento) document.querySelectorAll('.service-card, .step-item, .value-item, .nosotros-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(24px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
