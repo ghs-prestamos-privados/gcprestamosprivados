@@ -82,6 +82,8 @@
       /* Mismos tonos, más oscuros, para texto sobre fondo claro (contraste ≥ 4.5:1) */
       --gray-text:  #636F85;
       --gold-text:  #846C28;
+      --error-text:   #CF2A19;
+      --success-text: #187F44;
       --success:    #2ECC71;
       --error:      #E74C3C;
       --shadow:     0 8px 40px rgba(27,42,74,0.18);
@@ -862,7 +864,7 @@
 
     .field-error {
       font-size: 0.76rem;
-      color: var(--error);
+      color: var(--error-text);
       margin-top: 5px;
       display: none;
     }
@@ -987,7 +989,7 @@
     .form-message.success {
       background: rgba(46,204,113,0.1);
       border: 1.5px solid var(--success);
-      color: #1a8a4a;
+      color: var(--success-text);
     }
 
     /* Botón grande de WhatsApp dentro de los avisos del formulario */
@@ -1003,7 +1005,7 @@
     .form-message.error-msg {
       background: rgba(231,76,60,0.1);
       border: 1.5px solid var(--error);
-      color: var(--error);
+      color: var(--error-text);
     }
 
     /* ============================================================
